@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.mytime.Eureka</groupId>
-	<artifactId>EurekaServer</artifactId>
+	<artifactId>FTBook-EurekaServer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>EurekaServer</name>
+	<name>FTBook-EurekaServer</name>
 	<description>Eureka注册服务中心服务器</description>
 
 	<properties>
