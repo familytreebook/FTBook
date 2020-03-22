@@ -1,0 +1,17 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://centerosnode1:8100/eureka/,http://centerosnode2:8200/eureka/
+server:
+  port: 8201
+spring:
+  application:
+    name: FTBook-ConfigCenterServer
+  cloud:
+    config:
+      server:
+        git:
+          password: 
+          search-paths: FTBook-Configs
+          uri: https://github.com/familytreebook/FTBook.git
+          username: senwa

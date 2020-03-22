@@ -1,0 +1,17 @@
+server:
+  port: 8103   # 端口号
+spring:
+  application:
+    name: FTBook-ZuulServer   # 网关服务名称
+eureka:
+  client:
+    registry-fetch-interval-seconds: 5    # 获取注册列表的周期    
+    service-url:
+      defaultZone: http://centerosnode1:8100/eureka/,http://centerosnode2:8200/eureka/
+  instance:
+    prefer-ip-address: true   # 返回ip地址而不是hostname
+    ip-address: 127.0.0.1      # 本机地址
+zuul:
+  routes:    user-service:
+      path: /user-service/**
+      service-id: FTBook-UserCenterService

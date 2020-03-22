@@ -1,0 +1,15 @@
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://centerosnode1:8100/eureka/
+  instance:
+    hostname: centerosnode2
+  server:
+    enable-self-preservation: false
+server:
+  port: 8200
+spring:
+  application:
+    name: FTBook-EurekaServer

@@ -1,0 +1,9 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://centerosnode1:8100/eureka/,http://centerosnode2:8200/eureka/
+server:
+  port: 8202
+spring:
+  application:
+    name: FTBook-UserCenterService
