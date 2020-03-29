@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: FTBook-AuthCenterServer
+  thymeleaf:
+    #prefix: classpath:/views/
+    suffix: .html
+    mode: HTML
+    cache: false
+    mvc:
+      throw-exception-if-no-handler-found: true
+logging:
+  level:
+    #com.netflix: DEBUG
+    #org.springframework: DEBUG
+    #com.thoughtmechanix: DEBUG
+    com:
+      mytime: DEBUG
+    org:
+      springframework:
+        security: DEBUG
+        web: DEBUG
+server:
+  servlet:
+    context-path: /auth
+  port: 8104
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:8100/eureka,http://peer2:8200/eureka
+  instance:
+    prefer-ip-address: true
+

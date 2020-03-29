@@ -1,15 +1,36 @@
+spring:
+  application:
+    name: FTBook-EurekaServer
+---
+spring:
+  profiles:
+    - peer1
+server:
+  port: 8100
 eureka:
+  instance:
+    hostname: peer1
+    server:
+      enable-self-preservation: false
   client:
     fetch-registry: false
     register-with-eureka: false
     serviceUrl:
-      defaultZone: http://localhost:${server.port}/eureka/
+      defaultZone: http://peer2:8200/eureka/
+---
+spring:
+  profiles:
+    - peer2
+server:
+  port: 8200
+eureka:
   instance:
-    hostname: centerosnode
+    hostname: peer2
   server:
     enable-self-preservation: false
-server:
-  port: 8100
-spring:
-  application:
-    name: FTBook-EurekaServer
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://peer1:8100/eureka/
+

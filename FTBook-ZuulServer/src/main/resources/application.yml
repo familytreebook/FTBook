@@ -11,7 +11,16 @@ eureka:
   instance:
     prefer-ip-address: true   # 返回ip地址而不是hostname
     ip-address: 127.0.0.1      # 本机地址
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
 zuul:
-  routes:    user-service:
+  routes:
+    user-service:
       path: /user-service/**
       service-id: FTBook-UserCenterService
