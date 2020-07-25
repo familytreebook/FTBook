@@ -8,11 +8,11 @@
 		<version>2.1.7.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.mytime.UserCenter</groupId>
-	<artifactId>FTBook-UserCenterService</artifactId>
+	<groupId>com.mytime.Platform</groupId>
+	<artifactId>ftbook-platform</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>FTBook-UserCenterService</name>
-	<description>用户中心</description>
+	<name>FTBook-Platform</name>
+	<description>统一对外入口平台</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -45,6 +45,28 @@
 			<artifactId>lombok</artifactId>
 			<version>1.16.10</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.68</version>
+		</dependency>
+
+		<!-- Ribbon依赖 -->
+		<dependency>
+			<groupId>com.netflix.ribbon</groupId>
+			<artifactId>ribbon-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.netflix.ribbon</groupId>
+			<artifactId>ribbon-httpclient</artifactId>
+		</dependency>
+		<!-- 加入熔断机制依赖 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

@@ -3,6 +3,7 @@ package com.mytime.authCenterServer.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,6 +14,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
@@ -22,6 +24,10 @@ import java.util.concurrent.TimeUnit;
 @EnableAuthorizationServer
 public class OAuth2Config extends AuthorizationServerConfigurerAdapter{
 
+	@Autowired
+	private UserDetailsService userDetailsService;
+	@Autowired
+	private AuthenticationManager authenticationManager;
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
@@ -40,14 +46,22 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter{
 				.authorizedGrantTypes("authorization_code", "refresh_token")
 				.scopes("all")
 				.autoApprove(true)
-				.redirectUris("http://localhost:8087/login");
+				.redirectUris("http://localhost:8087/login")
+				.and()
+				.withClient("ftbook")
+				.secret(new BCryptPasswordEncoder().encode("123456"))
+				.authorizedGrantTypes("authorization_code", "refresh_token")
+				.scopes("all")
+				.autoApprove(false)
+				.redirectUris("http://localhost:8080/ssologin");
+		;
 	}
 
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
 
 		//endpoints.tokenStore(jwtTokenStore()).accessTokenConverter(jwtAccessTokenConverter());
-		DefaultTokenServices tokenServices = (DefaultTokenServices) endpoints.getDefaultAuthorizationServerTokenServices();
+		/*DefaultTokenServices tokenServices = (DefaultTokenServices) endpoints.getDefaultAuthorizationServerTokenServices();
 		//tokenServices.setTokenStore(endpoints.getTokenStore());
 		tokenServices.setTokenStore(jwtTokenStore());
 		tokenServices.setSupportRefreshToken(true);
@@ -56,15 +70,24 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter{
 		tokenServices.setTokenEnhancer(jwtAccessTokenConverter());
 		// 一天有效期
 		tokenServices.setAccessTokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(1));
-		endpoints.tokenServices(tokenServices);
+		endpoints.tokenServices(tokenServices);*/
+
+
+		endpoints.tokenStore(new InMemoryTokenStore())
+				.authenticationManager(authenticationManager)
+				.userDetailsService(userDetailsService)
+				.allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
 	}
 
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) {
-		security.tokenKeyAccess("isAuthenticated()");
+		security//.tokenKeyAccess("isAuthenticated()")
+				.tokenKeyAccess("permitAll()")
+				.checkTokenAccess("permitAll()")
+				.allowFormAuthenticationForClients();
 	}
 
-	@Bean
+	/*@Bean
 	public TokenStore jwtTokenStore() {
 		return new JwtTokenStore(jwtAccessTokenConverter());
 	}
@@ -74,6 +97,6 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter{
 		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
 		converter.setSigningKey("testKey");
 		return converter;
-	}
+	}*/
 	
 }

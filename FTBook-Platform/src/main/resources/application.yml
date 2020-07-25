@@ -1,15 +1,22 @@
 spring:
   application:
-    name: FTBook-UserCenterService
+    name: FTBook-Platform
 eureka:
   client:
     serviceUrl:
       defaultZone: http://peer1:8100/eureka/,http://peer2:8200/eureka/
+  instance:
+    prefer-ip-address: true
 server:
-  port: 8102
+  port: 8199
+  servlet:
+    context-path: /platform
 logging:
+  path: ./logs
   level:
-    #com.netflix: DEBUG
+    root: info
+  #config: classpath:logback-spring.xml
+    com.netflix: DEBUG
     com:
       mytime: DEBUG
     org:
@@ -23,6 +30,4 @@ security:
       user-authorization-uri: http://localhost:8104/auth/oauth/authorize
       access-token-uri: http://localhost:8104/auth/oauth/token
       registered-redirect-uri:
-    resource:
-      jwt:
-        key-uri: http://localhost:8104/auth/oauth/token_key
+      clientAuthenticationScheme: form
