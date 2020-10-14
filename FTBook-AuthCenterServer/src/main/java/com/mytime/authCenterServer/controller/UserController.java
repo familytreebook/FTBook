@@ -1,25 +1,17 @@
 package com.mytime.authCenterServer.controller;
 
-import com.mytime.authCenterServer.dto.UserInfo;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 @RestController
-@RequestMapping("/user")
-public class UserController{
-    @RequestMapping("/current")
-    @CrossOrigin
-    public UserDetails user(Principal user) {
-        Authentication a = (Authentication) user;
-        UserInfo u = (UserInfo) a.getPrincipal();
-        u.setWords("hello word!");
-        u.setNickname("张鸿森");
-        return u;
-
+@RequestMapping("/oauth2_token")
+public class UserController {
+    @GetMapping("/current")
+    public Principal user(Principal principal) {
+        return principal;
     }
-
-
 }

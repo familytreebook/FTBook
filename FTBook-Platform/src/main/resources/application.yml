@@ -1,12 +1,12 @@
 spring:
   application:
-    name: FTBook-Platform
+    name: platform
 eureka:
   client:
     serviceUrl:
       defaultZone: http://peer1:8100/eureka/,http://peer2:8200/eureka/
-  instance:
-    prefer-ip-address: true
+  #instance:
+   # prefer-ip-address: true
 server:
   port: 8199
   servlet:
@@ -22,12 +22,16 @@ logging:
     org:
       springframework:
         security: DEBUG
+oauth-server: http://localhost:8104/authserver
 security:
   oauth2:
-    client:
-      client-id: ftbook
-      client-secret: 123456
-      user-authorization-uri: http://localhost:8104/auth/oauth/authorize
-      access-token-uri: http://localhost:8104/auth/oauth/token
-      registered-redirect-uri:
-      clientAuthenticationScheme: form
+    resource:
+      id: platform
+      #      资源服务器三种验证令牌方法
+      #       一、在ResourceServerConfig中本地配置
+      #      二、从认证服务器获取用户信息 解析出token
+      #      user-info-uri: ${oauth-server}/oauth2_token/current
+      #      prefer-token-info: false
+      #       三、远程获取公钥 解析token
+      jwt:
+        key-uri: ${oauth-server}/oauth/token_key

@@ -28,14 +28,4 @@ public class UserController {
         return "管理员页面";
     }
 
-    @GetMapping("/ssologin")
-    public String login(@ModelAttribute GetTokenByCodeDto dto) {
-        System.out.println("ssologin");
-        System.out.println(dto.toString());
-        //System.out.println(model.toString());
-       // model.addAttribute("loginProcessUrl", "/auth/authentication/form");
-
-        return "oauth_login";
-        //return model;
-    }
 }

@@ -22,8 +22,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController
-@RequestMapping("/user")
+//@RestController
+//@RequestMapping("/user")
 public class UserController {
     private final static Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired

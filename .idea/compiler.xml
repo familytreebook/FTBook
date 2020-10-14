@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="FTBook-ZuulServer" />
+        <module name="FTBook-Platform" />
+        <module name="FTBook-UserCenterService" />
+        <module name="FTBook-ConfigCenterServer" />
+        <module name="FTBook-MediaCenterService" />
+        <module name="FTBook-EurekaServer" />
+        <module name="authcenterserver" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="authcenterserver" target="1.8" />
+      <module name="FTBook-ConfigCenterServer" target="1.8" />
+      <module name="FTBook-EurekaServer" target="1.8" />
+      <module name="FTBook-MediaCenterService" target="1.8" />
+      <module name="FTBook-Platform" target="1.8" />
+      <module name="FTBook-UserCenterService" target="1.8" />
+      <module name="FTBook-ZuulServer" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="FTBook-ConfigCenterServer" options="-parameters" />
+      <module name="FTBook-EurekaServer" options="-parameters" />
+      <module name="FTBook-MediaCenterService" options="-parameters" />
+      <module name="FTBook-Platform" options="-parameters" />
+      <module name="FTBook-UserCenterService" options="-parameters" />
+      <module name="FTBook-ZuulServer" options="-parameters" />
+      <module name="authcenterserver" options="-parameters" />
+    </option>
+  </component>
+</project>

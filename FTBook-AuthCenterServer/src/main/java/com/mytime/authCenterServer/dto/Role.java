@@ -1,19 +1,25 @@
 package com.mytime.authCenterServer.dto;
 
-import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
 
-@Data
-public class Role {
+import java.io.Serializable;
 
-    private String id;
+
+public class Role implements Serializable, GrantedAuthority {
+
+    private static final long serialVersionUID = 1L;
+
     private String name;
 
+    private String id;
 
-    public Role(){
-
+    @Override
+    public String toString() {
+        return name;
     }
 
-    public Role(String name) {
-        this.name = name;
+    @Override
+    public String getAuthority() {
+        return name;
     }
 }

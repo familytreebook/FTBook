@@ -10,7 +10,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 
 @Configuration
 @EnableWebSecurity
-@EnableOAuth2Sso
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebsecurityConfigurer extends WebSecurityConfigurerAdapter {
 

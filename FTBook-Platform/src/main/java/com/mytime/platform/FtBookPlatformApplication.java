@@ -12,19 +12,9 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableEurekaClient
-@EnableCircuitBreaker
 public class FtBookPlatformApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FtBookPlatformApplication.class, args);
-	}
-
-	@Bean
-	@LoadBalanced
-	public RestTemplate restTemplate() {
-
-		RestTemplate restTemplate = new RestTemplate();
-
-		return restTemplate;
 	}
 }

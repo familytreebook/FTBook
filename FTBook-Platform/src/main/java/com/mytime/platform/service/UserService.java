@@ -21,7 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.*;
 
-@Service
+//@Service
 public class UserService {
     private final static Logger logger = LoggerFactory.getLogger(UserService.class);
     @Autowired

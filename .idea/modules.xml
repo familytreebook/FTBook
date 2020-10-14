@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/FTBook.iml" filepath="$PROJECT_DIR$/.idea/FTBook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FTBook-ConfigCenterServer/FTBook-ConfigCenterServer.iml" filepath="$PROJECT_DIR$/FTBook-ConfigCenterServer/FTBook-ConfigCenterServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FTBook-EurekaServer/FTBook-EurekaServer.iml" filepath="$PROJECT_DIR$/FTBook-EurekaServer/FTBook-EurekaServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FTBook-MediaCenterService/FTBook-MediaCenterService.iml" filepath="$PROJECT_DIR$/FTBook-MediaCenterService/FTBook-MediaCenterService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FTBook-Platform/FTBook-Platform.iml" filepath="$PROJECT_DIR$/FTBook-Platform/FTBook-Platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FTBook-UserCenterService/FTBook-UserCenterService.iml" filepath="$PROJECT_DIR$/FTBook-UserCenterService/FTBook-UserCenterService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FTBook-ZuulServer/FTBook-ZuulServer.iml" filepath="$PROJECT_DIR$/FTBook-ZuulServer/FTBook-ZuulServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FTBook-AuthCenterServer/authcenterserver.iml" filepath="$PROJECT_DIR$/FTBook-AuthCenterServer/authcenterserver.iml" />
+    </modules>
+  </component>
+</project>

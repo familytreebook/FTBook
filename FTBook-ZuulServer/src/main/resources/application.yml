@@ -2,25 +2,63 @@ server:
   port: 8103   # 端口号
 spring:
   application:
-    name: FTBook-ZuulServer   # 网关服务名称
+    name: zuul   # 网关服务名称
 eureka:
   client:
-    registry-fetch-interval-seconds: 5    # 获取注册列表的周期    
     service-url:
-      defaultZone: http://centerosnode1:8100/eureka/,http://centerosnode2:8200/eureka/
-  instance:
-    prefer-ip-address: true   # 返回ip地址而不是hostname
-    ip-address: 127.0.0.1      # 本机地址
+      defaultZone: http://peer1:8100/eureka,http://peer2:8200/eureka
+  #instance:
+  #  prefer-ip-address: true   # 返回ip地址而不是hostname
+
+#认证服务器地址
+oauth-server: http://localhost:8104/authserver
+security:
+  oauth2:
+    #   和认证服务器中的client设置对应
+    client:
+      client-id: zuul
+      client-secret: secrect
+      #	   获取令牌地址
+      access-token-uri: ${oauth-server}/oauth/token
+      #      认证地址
+      user-authorization-uri: ${oauth-server}/oauth/authorize
+    resource:
+      #      两种方式进行令牌校验
+      #      一、
+      #      user-info-uri: ${oauth-server}/oauth2_token/current
+      #      prefer-token-info: false
+      #      二、访问授权服务器获取公钥 解析令牌
+      jwt:
+        key-uri: ${oauth-server}/oauth/token_key
 management:
   endpoints:
     web:
       exposure:
+        #include: routes,filters
         include: "*"
   endpoint:
     health:
       show-details: ALWAYS
+
 zuul:
   routes:
-    user-service:
-      path: /user-service/**
-      service-id: FTBook-UserCenterService
+    platform:
+      path: /platform/**
+      sensitiveHeaders:
+      serviceId: platform
+      stripPrefix: false
+    eureka-client1:
+      path: /eureka-client1/**
+      sensitiveHeaders:
+      serviceId: eureka-client1
+    oauth-server:
+      path: /authserver/**
+      sensitiveHeaders:
+      serviceId: authserver
+      stripPrefix: false
+    #  忽略路由
+#  ignored-patterns:  /**/v2/api-docs
+swagger:
+  title: SpringCloud项目开发文档
+  description: sso测试
+  version: 1.0

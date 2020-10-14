@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/FTBook-AuthCenterServer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FTBook-ConfigCenterServer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FTBook-EurekaServer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FTBook-MediaCenterService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FTBook-Platform/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FTBook-UserCenterService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FTBook-ZuulServer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FTBook-ZuulServer/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

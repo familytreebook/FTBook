@@ -1,6 +1,11 @@
 spring:
   application:
-    name: FTBook-AuthCenterServer
+    name: authserver
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seckill?serverTimezone=UTC&characterEncoding=UTF-8&nullCatalogMeansCurrent=true
+    username: oauth
+    password: 123456
   thymeleaf:
     #prefix: classpath:/views/
     suffix: .html
@@ -21,12 +26,12 @@ logging:
         web: DEBUG
 server:
   servlet:
-    context-path: /auth
+    context-path: /authserver
   port: 8104
 eureka:
   client:
     service-url:
       defaultZone: http://peer1:8100/eureka,http://peer2:8200/eureka
-  instance:
-    prefer-ip-address: true
+  #instance:
+   # prefer-ip-address: true
 
