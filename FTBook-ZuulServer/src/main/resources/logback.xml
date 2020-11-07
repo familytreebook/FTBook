@@ -158,12 +158,12 @@
     -->
 
     <!--开发环境:打印控制台-->
-    <springProfile name="dev">
-        <logger name="com.*" level="debug"/>
+    <springProfile name="default">
+       <!-- <logger name="com.*" level="debug"/>-->
         <logger name="org.*" level="debug"/>
     </springProfile>
 
-    <root level="info">
+    <root level="debug">
         <appender-ref ref="CONSOLE" />
         <!--<appender-ref ref="DEBUG_FILE" />
         <appender-ref ref="INFO_FILE" />

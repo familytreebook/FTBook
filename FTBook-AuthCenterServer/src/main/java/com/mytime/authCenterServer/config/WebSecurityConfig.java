@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.text.Normalizer;
+
 @Configuration
 @EnableWebSecurity
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -39,14 +41,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http    // 配置登陆页/login并允许访问
-                .formLogin().permitAll()
+                .formLogin()
+                .loginPage(FormLoginConstant.LOGIN_PAGE_URL)
+                .loginProcessingUrl(FormLoginConstant.LOGIN_PROCESSING_URL)
                 // 登出页
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
+                .and().authorizeRequests().antMatchers(FormLoginConstant.LOGIN_PROCESSING_URL,
+                FormLoginConstant.LOGIN_PAGE_URL,
+                FormLoginConstant.LOGING_PAGE_PAGEURL,
+                FormLoginConstant.GRANT_PAGE_PAGEURL
+                ).permitAll()
                 // 其余所有请求全部需要鉴权认证
-                .and().authorizeRequests().anyRequest().authenticated()
+                .anyRequest().authenticated()
                 // 由于使用的是JWT，我们这里不需要csrf
                 .and().csrf().disable();
-        System.out.println("web");
     }
 
     @Override

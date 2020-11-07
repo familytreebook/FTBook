@@ -17,16 +17,18 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
-//@RestController
-//@RequestMapping("/user")
+@RestController
+@RequestMapping("/user")
 public class UserController {
     private final static Logger logger = LoggerFactory.getLogger(UserController.class);
-    @Autowired
+   /* @Autowired
     private UserService userService;
 
     @GetMapping("/normal")
@@ -45,11 +47,11 @@ public class UserController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String admin() {
         return "管理员页面";
-    }
+    }*/
 
-    @GetMapping("/getToken")
+    /*@GetMapping("/getToken")
     public String getToken(@ModelAttribute GetTokenByCodeDto dto) {
-        logger.info("获取token:{}",dto);
+        logger.info("获取token:{}",dto);*/
 
       /*  HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
@@ -70,8 +72,20 @@ public class UserController {
         ResponseEntity<JSONObject> responseEntity = restTemplate.postForEntity(builder.toUriString(), request, JSONObject.class);
         System.out.println(builder.toUriString());
         System.out.println(responseEntity);*/
-
+/*
         return  userService.getToken(dto);
         //return model;
+    }*/
+
+    //获取当前人的菜单信息
+    @RequestMapping(value="login",method = RequestMethod.GET)
+    public ModelAndView login(Principal user){
+        //重定向
+        //return user;
+        return new ModelAndView("redirect:http://localhost:8080/login");
+    }
+    @RequestMapping(value="getResourcesList",method = RequestMethod.GET)
+    public Principal getResourcesList(Principal user){
+        return user;
     }
 }

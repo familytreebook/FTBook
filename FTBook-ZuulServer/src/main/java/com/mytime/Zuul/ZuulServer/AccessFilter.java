@@ -3,6 +3,7 @@ package com.mytime.Zuul.ZuulServer;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -47,15 +48,28 @@ public class AccessFilter extends ZuulFilter {
      */
     @Override
     public Object run() throws ZuulException {
+
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
-        String accessToken = request.getParameter("name");
-        if (accessToken == null) {
-//            过滤该请求
-            ctx.setSendZuulResponse(false);
-            ctx.setResponseStatusCode(401);
-            ctx.addZuulResponseHeader("content-type","text/html;charset=utf-8");
-            ctx.setResponseBody("z_error:无参数访问");
+
+        //判断是否为ajax请求，默认不是
+        boolean isAjaxRequest = false;
+        if(!StringUtils.isBlank(request.getHeader("x-requested-with")) && request.getHeader("x-requested-with").equals("XMLHttpRequest")){
+            isAjaxRequest = true;
+        }
+
+
+        //如果是ajax请求 判断是否有token
+        if(isAjaxRequest){
+            String accessToken = request.getHeader("Authorization");
+            System.err.println("zull header "+accessToken);
+            if (accessToken == null) {
+                ctx.setSendZuulResponse(false);
+                ctx.setResponseStatusCode(401);
+                ctx.addZuulResponseHeader("content-type","text/html;charset=utf-8");
+                ctx.setResponseBody("z_error:无参数访问");
+            }
+            ctx.addZuulRequestHeader("Authorization",accessToken);
         }
         return null;
     }

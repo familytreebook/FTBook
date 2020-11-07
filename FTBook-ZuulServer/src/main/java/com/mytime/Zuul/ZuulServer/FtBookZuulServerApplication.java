@@ -7,6 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableZuulProxy
@@ -20,4 +21,8 @@ public class FtBookZuulServerApplication {
 		SpringApplication.run(FtBookZuulServerApplication.class, args);
 	}
 
+	@Bean
+	public AccessFilter accessPasswordFilter(){
+		return new AccessFilter();
+	}
 }

@@ -47,10 +47,6 @@ zuul:
       sensitiveHeaders:
       serviceId: platform
       stripPrefix: false
-    eureka-client1:
-      path: /eureka-client1/**
-      sensitiveHeaders:
-      serviceId: eureka-client1
     oauth-server:
       path: /authserver/**
       sensitiveHeaders:

@@ -158,8 +158,9 @@
     -->
 
     <!--开发环境:打印控制台-->
-    <springProfile name="dev">
+    <springProfile name="default">
         <logger name="com.mytime" level="debug"/>
+        <logger name="org.*" level="debug"/>
     </springProfile>
 
     <root level="info">
