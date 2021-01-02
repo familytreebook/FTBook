@@ -3,7 +3,7 @@ eureka:
     serviceUrl:
       defaultZone: http://centerosnode1:8100/eureka/,http://centerosnode2:8200/eureka/
 server:
-  port: 8101
+  port: 8198
 spring:
   application:
     name: FTBook-ConfigCenterServer

@@ -43,8 +43,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         clients.inMemory()
                 .withClient("zuul")
                 .secret(new BCryptPasswordEncoder().encode("secrect"))
-                .scopes("app")
-                .authorizedGrantTypes("authorization_code", "password")
+                .scopes("app","platform")
+                .authorizedGrantTypes("authorization_code", "password","refresh_token")
                 .redirectUris("http://localhost:8103/login");
 //        clients.withClientDetails(new JdbcClientDetailsService(dataSource));
     }

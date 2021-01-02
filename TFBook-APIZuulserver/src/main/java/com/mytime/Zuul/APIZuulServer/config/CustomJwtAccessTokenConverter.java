@@ -1,6 +1,5 @@
-package com.mytime.authCenterServer.config;
+package com.mytime.Zuul.APIZuulServer.config;
 
-import com.mytime.authCenterServer.dto.User;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;

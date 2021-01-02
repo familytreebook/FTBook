@@ -21,8 +21,8 @@ public class FtBookZuulServerApplication {
 		SpringApplication.run(FtBookZuulServerApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	public AccessFilter accessPasswordFilter(){
 		return new AccessFilter();
-	}
+	}*/
 }
