@@ -32,6 +32,12 @@ public class ResultModel<T> implements Serializable {
         this.msg = msg;
     }
 
+    public ResultModel(CommonResultEnum commonResultEnum, T result) {
+        this.code = commonResultEnum.getCode();
+        this.msg = commonResultEnum.getMsg();
+        this.result = result;
+    }
+
     public ResultModel(Integer code, String msg, T result) {
         this.code = code;
         this.msg = msg;
@@ -39,7 +45,7 @@ public class ResultModel<T> implements Serializable {
     }
 
     public boolean isOk() {
-        return (this.code == CODE_OK) || (this.code == CommonResultEnum.CODE_OK_0.getCode());
+        return (this.code == CODE_OK) || (this.code == CommonResultEnum.CODE_OK.getCode());
     }
 
     public static  <T> ResultModel<T> ok(){
@@ -56,10 +62,6 @@ public class ResultModel<T> implements Serializable {
 
     public static  <T> ResultModel<T> fail(CommonResultEnum code){
         return  result(code);
-    }
-
-    public static  <T> ResultModel<T> rpcFail(){
-        return  result(CommonResultEnum.CODE_RPC_ERROR);
     }
 
     public static <T> ResultModel<T> result(CommonResultEnum code) {
