@@ -1,36 +1,26 @@
 package com.mytime.platform.controller;
 
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+import com.mytime.api.usercenter.api.IUserCenterServiceAPI;
+import com.mytime.api.usercenter.vo.VUser;
+import com.mytime.framework.common.bean.ResultModel;
 import com.mytime.framework.common.vo.TokenInfo;
-import com.mytime.platform.dto.GetTokenByCodeDto;
-import com.mytime.platform.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.security.Principal;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
     private final static Logger logger = LoggerFactory.getLogger(UserController.class);
+    @Autowired
+    private IUserCenterServiceAPI iUserCenterServiceAPI;
 
     //获取当前人的菜单信息
     @RequestMapping(value="login",method = RequestMethod.GET)
@@ -48,9 +38,8 @@ public class UserController {
     }
 
     @RequestMapping(value="getUserInfo",method = RequestMethod.GET)
-    public Principal getUserInfo(Principal user){
-
-        return user;
+    public ResultModel<VUser> getUserInfo(Principal pincipal){
+        return iUserCenterServiceAPI.getUserDetail(pincipal.getName());
     }
     @RequestMapping(value="getResourceList",method = RequestMethod.GET)
     public Principal getResourceList(Principal user){

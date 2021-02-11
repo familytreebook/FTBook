@@ -1,28 +1,38 @@
 spring:
   application:
-    name: FTBook-UserCenterService
+    name: usercenter
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seckill?serverTimezone=UTC&characterEncoding=UTF-8&nullCatalogMeansCurrent=true
+    username: oauth
+    password: 123456
 eureka:
   client:
     serviceUrl:
       defaultZone: http://peer1:8100/eureka/,http://peer2:8200/eureka/
 server:
+  servlet:
+    context-path: /usercenter
   port: 8102
 logging:
   level:
+    com.baomidou.mybatisplus.samples: debug
     #com.netflix: DEBUG
     com:
       mytime: DEBUG
     org:
       springframework:
         security: DEBUG
+oauth-server: http://localhost:8104/authserver
 security:
   oauth2:
-    client:
-      client-id: ftbook
-      client-secret: 123456
-      user-authorization-uri: http://localhost:8104/auth/oauth/authorize
-      access-token-uri: http://localhost:8104/auth/oauth/token
-      registered-redirect-uri:
     resource:
+      id: usercenter
+      #      资源服务器三种验证令牌方法
+      #       一、在ResourceServerConfig中本地配置
+      #      二、从认证服务器获取用户信息 解析出token
+      #      user-info-uri: ${oauth-server}/oauth2_token/current
+      #      prefer-token-info: false
+      #       三、远程获取公钥 解析token
       jwt:
-        key-uri: http://localhost:8104/auth/oauth/token_key
+        key-uri: ${oauth-server}/oauth/token_key

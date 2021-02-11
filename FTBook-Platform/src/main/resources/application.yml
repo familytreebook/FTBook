@@ -3,7 +3,8 @@ spring:
     name: platform
 eureka:
   client:
-    serviceUrl:
+    fetch-registry: true
+    service-url:
       defaultZone: http://peer1:8100/eureka/,http://peer2:8200/eureka/
   #instance:
    # prefer-ip-address: true
@@ -35,3 +36,27 @@ security:
       #       三、远程获取公钥 解析token
       jwt:
         key-uri: ${oauth-server}/oauth/token_key
+#开启feign支持断路器保护
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  shareSecurityContext: true
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          strategy: THREAD
+#          thread:
+#            timeoutInMilliseconds: 70000
+# ribbon配置
+#ribbon:
+#  eureka:
+#    enabled: true
+#    MaxConnectionsPerHost: 300
+#  MaxTotalConnections: 1000
+#  ConnectTimeout: 60000
+#  ReadTimeout: 60000
+#  MaxAutoRetries: 1
+#  MaxAutoRetriesNextServer: 1
