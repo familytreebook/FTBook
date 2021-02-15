@@ -1,3 +1,5 @@
+#部署服务器地址
+node1: 10.37.129.3
 spring:
   application:
     name: FTBook-EurekaServer
@@ -16,7 +18,7 @@ eureka:
     fetch-registry: false
     register-with-eureka: false
     serviceUrl:
-      defaultZone: http://peer2:8200/eureka/
+      defaultZone: http://${node1}:8200/eureka/
 ---
 spring:
   profiles:
@@ -32,5 +34,5 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     serviceUrl:
-      defaultZone: http://peer1:8100/eureka/
+      defaultZone: http://${node1}:8100/eureka/
 
