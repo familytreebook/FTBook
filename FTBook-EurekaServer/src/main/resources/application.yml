@@ -15,8 +15,8 @@ eureka:
     server:
       enable-self-preservation: false
   client:
-    #fetch-registry: true
-    #register-with-eureka: true
+    fetch-registry: true
+    register-with-eureka: true
     serviceUrl:
       defaultZone: http://${node1}:8200/eureka/
 ---
@@ -31,8 +31,8 @@ eureka:
   server:
     enable-self-preservation: false
   client:
-    #fetch-registry: true
-    #register-with-eureka: true
+    fetch-registry: true
+    register-with-eureka: true
     serviceUrl:
       defaultZone: http://${node1}:8100/eureka/
 
