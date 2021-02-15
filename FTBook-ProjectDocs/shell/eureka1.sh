@@ -24,7 +24,7 @@ start(){
         if [ $? -eq "0" ]; then
                 echo "${APP_NAME} is already running. pid=${pid} ."
         else
-                nohup java -Xmx256m -Xms256m -jar $APP_NAME --spring.profiles.active=peer1 > /dev/null 2>&1 &
+                nohup java -Xmx256m -Xms256m -jar $APP_NAME --spring.profiles.active=peer1 >> startlog 2>&1 &
                 if [ $? -eq 0 ]; then
                         echo "start ${APP_NAME} is success"
                 else
