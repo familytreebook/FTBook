@@ -4,6 +4,7 @@ import com.mytime.api.usercenter.dto.UserDto;
 import com.mytime.api.usercenter.dto.UserRequestDto;
 import com.mytime.api.usercenter.vo.VUser;
 import com.mytime.framework.common.bean.ResultModel;
+import com.mytime.framework.common.reponse.PageResponseDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +30,7 @@ public interface IUserCenterServiceAPI {
 
     //查询用户列表
     @PostMapping(value="/user/getUsers")
-    ResultModel<List<VUser>> getUsers(@RequestBody UserRequestDto dto);
+    ResultModel<PageResponseDto<VUser>> getUsers(@RequestBody UserRequestDto dto);
 
     //查询用户详情
     @GetMapping(value="/user/getUserDetail")

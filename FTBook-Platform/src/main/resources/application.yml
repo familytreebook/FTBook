@@ -1,3 +1,6 @@
+#部署服务器地址
+#node1: 10.37.129.3
+node1: 127.0.0.1
 spring:
   application:
     name: platform
@@ -5,7 +8,7 @@ eureka:
   client:
     fetch-registry: true
     service-url:
-      defaultZone: http://peer1:8100/eureka/,http://peer2:8200/eureka/
+      defaultZone: http://${node1}:8100/eureka,http://${node1}:8200/eureka
   #instance:
    # prefer-ip-address: true
 server:

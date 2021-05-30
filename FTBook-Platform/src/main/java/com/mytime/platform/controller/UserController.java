@@ -22,7 +22,6 @@ public class UserController {
     @Autowired
     private IUserCenterServiceAPI iUserCenterServiceAPI;
 
-    //获取当前人的菜单信息
     @RequestMapping(value="login",method = RequestMethod.GET)
     public ModelAndView login(Principal user){
         //重定向
@@ -41,6 +40,8 @@ public class UserController {
     public ResultModel<VUser> getUserInfo(Principal pincipal){
         return iUserCenterServiceAPI.getUserDetail(pincipal.getName());
     }
+
+
     @RequestMapping(value="getResourceList",method = RequestMethod.GET)
     public Principal getResourceList(Principal user){
 

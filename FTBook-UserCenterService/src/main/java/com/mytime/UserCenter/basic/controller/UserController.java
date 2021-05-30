@@ -1,5 +1,6 @@
 package com.mytime.UserCenter.basic.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.mytime.UserCenter.basic.entity.User;
 import com.mytime.UserCenter.basic.service.IUserService;
 import com.mytime.api.usercenter.dto.UserDto;
@@ -7,6 +8,10 @@ import com.mytime.api.usercenter.dto.UserRequestDto;
 import com.mytime.api.usercenter.vo.VUser;
 import com.mytime.framework.common.bean.CommonResultEnum;
 import com.mytime.framework.common.bean.ResultModel;
+
+
+import com.mytime.framework.common.reponse.PageResponseDto;
+import org.apache.commons.beanutils.ConvertUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -45,9 +50,17 @@ public class UserController {
 
     //查询用户列表
     @PostMapping(value="/getUsers")
-    ResultModel<List<VUser>> getUsers(@RequestBody UserRequestDto dto){
+    ResultModel<PageResponseDto<VUser>> getUsers(@RequestBody UserRequestDto dto){
+        IPage<User> userPageList = userService.getUserList(dto);
+        
+        IPage<Object> vUserList =  userPageList.convert(User -> ConvertUtils.convert(User, VUser.class));
 
-        return null;
+        PageResponseDto<VUser> pageResponseDto = new PageResponseDto();
+        BeanUtils.copyProperties(vUserList,pageResponseDto);
+
+        ResultModel resultModel = new ResultModel();
+        resultModel.setResult(pageResponseDto);
+        return resultModel;
     }
 
     //查询用户详情

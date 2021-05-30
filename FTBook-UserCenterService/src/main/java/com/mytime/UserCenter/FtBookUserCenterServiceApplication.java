@@ -1,10 +1,12 @@
 package com.mytime.UserCenter;
 
+import com.baomidou.mybatisplus.annotation.DbType;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
@@ -16,5 +18,4 @@ public class FtBookUserCenterServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FtBookUserCenterServiceApplication.class, args);
 	}
-	
 }

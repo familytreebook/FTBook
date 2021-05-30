@@ -5,6 +5,7 @@ import com.mytime.api.usercenter.dto.UserRequestDto;
 import com.mytime.api.usercenter.vo.VUser;
 import com.mytime.framework.common.bean.CommonResultEnum;
 import com.mytime.framework.common.bean.ResultModel;
+import com.mytime.framework.common.reponse.PageResponseDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -58,7 +59,7 @@ public class UserCenterServiceFallbackFactory implements IUserCenterServiceAPI {
     }
 
     @Override
-    public ResultModel<List<VUser>> getUsers(UserRequestDto dto) {
+    public ResultModel<PageResponseDto<VUser>> getUsers(UserRequestDto dto) {
         return new ResultModel(CommonResultEnum.CODE_Circuit_Breaker,null);
     }
 

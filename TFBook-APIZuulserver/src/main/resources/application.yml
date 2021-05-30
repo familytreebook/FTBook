@@ -1,3 +1,6 @@
+#部署服务器地址
+#node1: 10.37.129.3
+node1: 127.0.0.1
 server:
   port: 8101  # 端口号
 spring:
@@ -6,7 +9,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://peer1:8100/eureka,http://peer2:8200/eureka
+      defaultZone: http://${node1}:8100/eureka,http://${node1}:8200/eureka
   #instance:
   #  prefer-ip-address: true   # 返回ip地址而不是hostname
 
