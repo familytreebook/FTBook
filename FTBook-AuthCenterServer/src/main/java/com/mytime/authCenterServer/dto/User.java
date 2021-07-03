@@ -3,6 +3,7 @@ package com.mytime.authCenterServer.dto;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.mytime.api.usercenter.constants.UserStatusEnum;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,8 +39,8 @@ public class User implements Serializable, UserDetails {
     @TableId(value = "nickname")
     private String nickname;
 
-    @TableId(value = "enabled")
-    private boolean enabled = false;
+    @TableId(value = "userstatus")
+    private int userstatus;
 
     @TableId(value = "email")
     private String email;
@@ -82,12 +83,13 @@ public class User implements Serializable, UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return UserStatusEnum.expired.getCode()!=userstatus;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+
+        return UserStatusEnum.locked.getCode()!=userstatus;
     }
 
     @Override
@@ -97,7 +99,7 @@ public class User implements Serializable, UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return UserStatusEnum.enabled.getCode()==userstatus;
     }
 
     @Override
@@ -130,9 +132,6 @@ public class User implements Serializable, UserDetails {
         this.nickname = nickname;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
 
     public String getEmail() {
         return email;
@@ -174,6 +173,14 @@ public class User implements Serializable, UserDetails {
         this.birthday = birthday;
     }
 
+    public int getUserstatus() {
+        return userstatus;
+    }
+
+    public void setUserstatus(int userstatus) {
+        this.userstatus = userstatus;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -184,7 +191,7 @@ public class User implements Serializable, UserDetails {
                 ", avatar='" + avatar + '\'' +
                 ", phone='" + phone + '\'' +
                 ", nickname='" + nickname + '\'' +
-                ", enabled=" + enabled +
+                ", userstatus=" + userstatus +
                 ", email='" + email + '\'' +
                 ", words='" + words + '\'' +
                 ", regtime=" + regtime +

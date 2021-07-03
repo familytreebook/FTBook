@@ -34,7 +34,7 @@ public class UserRequestDto extends PageRequestDto {
     private String nicknameLike;
     private String nicknameLikeLeft;
 
-    private boolean enabled;
+    private Integer userstatus;
 
     private String email;
     private String emailLike;

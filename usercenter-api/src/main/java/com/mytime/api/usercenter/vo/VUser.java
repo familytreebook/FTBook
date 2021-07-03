@@ -25,7 +25,7 @@ public class VUser implements Serializable {
 
     private String nickname;
 
-    private boolean enabled;
+    private int userstatus;
 
     private String email;
 
@@ -36,5 +36,9 @@ public class VUser implements Serializable {
     private int sex;
 
     private Date birthday;
+
+    private Date updatetime;
+
+    private Date lastlogintime;
 
 }

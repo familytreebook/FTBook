@@ -2,6 +2,8 @@ package com.mytime.UserCenter.basic.entity;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.Date;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -36,17 +38,21 @@ public class User implements Serializable {
 
     private String nickname;
 
-    private Integer enabled;
+    private int userstatus;
 
     private String email;
 
     private String words;
 
-    private LocalDateTime regtime;
+    private Date regtime;
+
+    private Date updatetime;
+
+    private Date lastlogintime;
 
     private String sex;
 
-    private LocalDateTime birthday;
+    private Date birthday;
 
 
 }

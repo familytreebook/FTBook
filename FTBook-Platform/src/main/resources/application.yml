@@ -4,6 +4,10 @@ node1: 127.0.0.1
 spring:
   application:
     name: platform
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
 eureka:
   client:
     fetch-registry: true
